@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int limit) {
+       multiset<int>m;
+        int i=0,j=0,ans=0;
+        while(j<nums.size())
+        {
+            m.insert(nums[j]);
+            int k=*m.rbegin()-*m.begin();
+            cout<<k<<endl;
+            if(k<=limit)
+                ans=max(ans,j-i+1);
+            else
+            {
+                while(k>limit){
+                    m.erase(m.find(nums[i]));
+                    k=*m.end()-*m.begin();
+                    i++;
+                }
+            }
+            j++;
+        }
+        return ans;
+    }
+};

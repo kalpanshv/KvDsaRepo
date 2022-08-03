@@ -1,0 +1,18 @@
+   ListNode* mergeNodes(ListNode* head) {
+        ListNode *start=head;
+        ListNode *ptr=head->next;
+        int sum=0;
+        while(ptr)
+        {
+            sum+=ptr->val;
+            if(ptr->val==0)
+            {
+                start->next->val=sum;
+                start=start->next;
+                start->next=ptr->next;
+                sum=0;
+            }
+            ptr=ptr->next;
+        }
+        return head->next;
+    }

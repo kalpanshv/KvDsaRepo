@@ -1,0 +1,34 @@
+int garbageCollection(vector<string>& gar, vector<int>& travel) {
+        vector<vector<int>>m(gar.size(),vector<int>(3,0));
+        for(int i=0;i<gar.size();i++)
+        {
+            string s=gar[i];
+            for(char c:s)
+            {
+                if(c=='M')
+                    m[i][0]++;
+                if(c=='P')
+                    m[i][1]++;
+                if(c=='G')
+                    m[i][2]++;
+            }
+        }
+        int ans=0;
+        for(int i=0;i<3;i++)
+        {
+            int t=0,k=0;
+            int time=0;
+            for(int j=0;j<m.size();j++)
+            {
+                if(j!=0)
+                t=t+travel[j-1];
+                if(m[j][i])
+                {
+                    time+=m[j][i];
+                    k=time+t;
+                }  
+            }
+            ans+=k;
+        }
+        return ans;
+    }

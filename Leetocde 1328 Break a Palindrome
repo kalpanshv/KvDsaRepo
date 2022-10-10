@@ -1,0 +1,17 @@
+string breakPalindrome(string p) {
+        if(p.size()==1)
+            return "";
+        int t=0;
+        for(int i=0;i<p.size()/2;i++)
+        {
+            if(p[i]!='a')
+            {
+                p[i]='a';
+                t=1;
+                break;
+            }
+        }
+        if(t==0)
+            p[p.size()-1]='b';
+        return  p;
+    }

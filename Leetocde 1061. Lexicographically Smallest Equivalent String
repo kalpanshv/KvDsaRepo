@@ -1,0 +1,25 @@
+  void dfs(int i,int j,unordered_map<int,vector<int>>m,string &baseStr,vector<int>&vis)
+    {
+        vis[i]=1;
+        for(auto it:m[i])
+        {
+            if(it<baseStr[j]-'a')
+            baseStr[j]='a'+it;
+            if(!vis[it])
+            dfs(it,j,m,baseStr,vis);
+        }
+    }
+    string smallestEquivalentString(string s1, string s2, string baseStr) {
+        unordered_map<int,vector<int>>m;
+        for(int i=0;i<s1.size();i++)
+        {
+            m[s1[i]-'a'].push_back(s2[i]-'a');
+            m[s2[i]-'a'].push_back(s1[i]-'a');
+        }
+        for(int i=0;i<baseStr.size();i++)
+        {
+            vector<int>vis(26,0);
+            dfs(baseStr[i]-'a',i,m,baseStr,vis);
+        }
+        return baseStr;
+    }

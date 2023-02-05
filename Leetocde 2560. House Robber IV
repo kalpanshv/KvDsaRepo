@@ -1,0 +1,28 @@
+  bool func(int k,int mid,vector<int>& nums)
+    {
+        int i=0,n=nums.size();
+        while(i<n)
+        {
+            if(nums[i]<=mid)
+            {k--; 
+            i+=2;}
+            else
+            i++;
+            if(k == 0) 
+            return true;
+        }
+        return k == 0;
+    }
+    int minCapability(vector<int>& nums, int k) {
+        int s=0;
+        int e=1e9+1;
+        while(s<e)
+        {
+            int mid=(s+e)/2;
+            if(func(k,mid,nums))
+            e=mid;
+            else
+            s=mid+1;
+        }
+        return s;
+    }

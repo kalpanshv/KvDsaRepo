@@ -1,0 +1,25 @@
+class FindElements {
+public:
+    TreeNode *root;
+    unordered_set<int>s;
+    FindElements(TreeNode* root) {
+        this->root=root;
+    }
+    void func(TreeNode* root,int value)
+    {
+        if(!root)
+        return;
+        root->val=value;
+        s.insert(value);
+        func(root->left,2*value+1);
+        func(root->right,2*value+2);
+    }
+    bool find(int target) {
+        if(!root)
+        return false;
+        func(root,0);
+        if(s.count(target))
+        return true;
+        return false;
+    }
+};

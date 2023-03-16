@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int equalSubstring(string s, string t, int mc) {
+        int i=0,j=0,sum=0,ans=0;
+        while(j<s.size())
+        {
+            sum+=abs(s[j]-t[j]);
+            if(sum<=mc)
+            ans=max(ans,j-i+1);
+            while(sum>mc)
+            {
+                sum-=abs(s[i]-t[i]);
+                i++;
+            }
+            j++;
+        }
+        return ans;
+    }
+};
